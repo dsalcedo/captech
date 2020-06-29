@@ -60,3 +60,9 @@
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+.roboto-mono {
+    font-family: 'Roboto Mono', monospace;
+}

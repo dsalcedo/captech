@@ -1,4 +1,4 @@
-[![Inline docs](https://travis-ci.org/dsalcedo/captech.png?branch=master)](https://travis-ci.org/dalcedo/captech)
+[![Build Status](https://travis-ci.com/dsalcedo/captech.svg?branch=master)](https://travis-ci.com/dsalcedo/captech)
 
 # Calculator
 

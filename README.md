@@ -1,3 +1,5 @@
+[![Inline docs](https://travis-ci.org/dsalcedo/captech.png?branch=master)](https://travis-ci.org/dalcedo/captech)
+
 # Calculator
 
 ![Alt text](screenshot.png?raw=true "Simple calculator by Daniel Salcedo")

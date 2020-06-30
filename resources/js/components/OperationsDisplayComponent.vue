@@ -33,16 +33,16 @@
                 /**
                  * Scroll the `operations display` automatically.
                  */
-                try {
-                    let selector_display = document.querySelector("#operations-display");
+                const selector_display = document.querySelector("#operations-display");
 
-                    let selector_width = selector_display.scrollWidth;
+                if (selector_display == null || selector_display == undefined) {
+                    return;
+                }
 
-                    if (selector_width > 0) {
-                        selector_display.scrollTo(selector_width, 0);
-                    }
-                }  catch(err) {
-                   console.error(err.toString());
+                let selector_width = selector_display.scrollWidth;
+
+                if (selector_width > 0) {
+                    selector_display.scrollTo(selector_width, 0);
                 }
             },
         }

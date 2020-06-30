@@ -1,6 +1,7 @@
 # Calculator
 
-Calculator for Captech
+![Alt text](screenshot.png?raw=true "Simple calculator by Daniel Salcedo")
+
 
 ### Installation
 

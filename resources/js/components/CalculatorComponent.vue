@@ -2,7 +2,7 @@
     <div class="w-full bg-indigo-700 rounded-lg shadow-lg p-4">
         <div class="text-white roboto-mono text-right bg-indigo-600 rounded-lg p-2 shadow-sm mb-2">
             <operations-display-component v-bind:display="operations_display"></operations-display-component>
-            <div class="w-full text-4xl h-14 scrolling-touch ">{{ valueDisplay }}</div>
+            <div class="w-full text-4xl h-14 scrolling-touch">{{ valueDisplay }}</div>
         </div>
         <div class="w-full bg-indigo-700">
             <div class="flex flex-wrap text-xl -mx-1">
@@ -69,6 +69,19 @@
             }
         },
         methods: {
+            limitDecimal(value) {
+                /**
+                 * Count the decimals in some number
+                 * @type {number}
+                 * */
+                if (Math.floor(value) !== value) {
+                    const size = value.toString().split(".")[1].length || 0;
+                    if (size > 5) {
+                        return (value).toFixed(5);
+                    }
+                }
+                return value;
+            },
             setFixed() {
                 /**
                  * Indicates if the `value display` needs decimal point.
@@ -89,10 +102,10 @@
             clearEntry(default_value = 0) {
                 /**
                  * Cleans only the `value display` to default values.
-                 * @type {boolean}
+                 * @type {number}
                  */
                 this.isFixed = false;
-                this.valueDisplay = default_value;
+                this.valueDisplay = this.limitDecimal(default_value);
                 this.integerDisplay = 0;
                 this.places = 0;
             },
@@ -107,12 +120,13 @@
 
                 value = `${this.integerDisplay}${value}`;
 
-                if (this.isFixed) {
+                if (this.isFixed && this.places <= 4) {
                     this.places += 1;
                 }
 
                 this.integerDisplay = parseInt(value);
-                this.valueDisplay = (!this.isFixed) ? this.integerDisplay : this.integerDisplay / Math.pow(10, this.places);
+                value = (!this.isFixed) ? this.integerDisplay : this.integerDisplay / Math.pow(10, this.places);
+                this.valueDisplay = this.limitDecimal(value)
             },
             handle(symbol) {
                 /**
@@ -145,7 +159,7 @@
 
                 this.operations_display = this.operations_list.join(" ");
 
-                let value = eval(`${this.operations_display}` );
+                let value = this.limitDecimal(eval(`${this.operations_display}` ));
 
                 this.operations_list = this.operations_list.concat([symbol]);
                 this.operations_display = this.operations_list.join(" ");

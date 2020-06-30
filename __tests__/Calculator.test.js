@@ -54,23 +54,20 @@ describe('Calculator.test.js', () => {
     });
 
     test('solve complex operation', () => {
-        wrapper.vm.add(-100);
+        wrapper.vm.add(100);
         wrapper.vm.handle("+");
+        expect(wrapper.vm.$data.valueDisplay).toBe(100);
         wrapper.vm.add(99);
         wrapper.vm.handle("*");
+        expect(wrapper.vm.$data.valueDisplay).toBe(199);
         wrapper.vm.add(3);
         wrapper.vm.handle("/");
+        expect(wrapper.vm.$data.valueDisplay).toBe(397);
         wrapper.vm.add(5);
-        wrapper.vm.handle("*");
-        wrapper.vm.add(1.97);
-        wrapper.vm.handle("/");
-        wrapper.vm.add(0.76);
         wrapper.vm.handle("-");
-        wrapper.vm.add(1.66);
-        wrapper.vm.handle("+");
-        wrapper.vm.add(.37);
+        expect(wrapper.vm.$data.valueDisplay).toBe(159.4);
+        wrapper.vm.add(1.97);
         wrapper.vm.handle("=");
-
-        expect(wrapper.vm.$data.valueDisplay).toBe(1.25)
+        expect(wrapper.vm.$data.valueDisplay).toBe(158.4)
     });
 });
